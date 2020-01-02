@@ -47,13 +47,13 @@ unsigned char src[2048][25];
 unsigned char dst[2048][25];
 
 void ipprocess(const unsigned int length,const unsigned char *content){
-unsigned char *IP_src;
-unsigned char *IP_dst;
+unsigned char IP_src[25]={0};
+unsigned char IP_dst[25]={0};
 struct ip_header *ipinfo=(struct ip_header *)(content+ ETHER_HDR_LEN);
 int size;
 int i;
-IP_src=inet_ntoa(ipinfo->ip_src);
-IP_dst=inet_ntoa(ipinfo->ip_dst);
+strcpy(IP_src,inet_ntoa(ipinfo->ip_src));
+strcpy(IP_dst,inet_ntoa(ipinfo->ip_dst));
 printf("IP Source:%s\n",IP_src);
 printf("IP Destination :%s\n",IP_dst);
 for(i=0;i<2048;i++){
